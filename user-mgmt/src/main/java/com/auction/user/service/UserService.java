@@ -31,7 +31,7 @@ public class UserService {
 		}
 	}
 	
-	private UserEntity populateUserData(UserDetails userDetails, UserType utype) {
+	public UserEntity populateUserData(UserDetails userDetails, UserType utype) {
 		UserEntity user = new UserEntity();
 		user.setFirstName(userDetails.getFirstName());
 		user.setLastName(userDetails.getLastName());

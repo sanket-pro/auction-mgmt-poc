@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
+    
+server.port: 8081
+
+userservice.url: http://localhost:8080/user/validate?token={token}&type={type}

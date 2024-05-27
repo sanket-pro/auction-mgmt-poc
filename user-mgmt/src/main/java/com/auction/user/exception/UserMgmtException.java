@@ -1,11 +1,12 @@
-package com.auction.product.exception;
+package com.auction.user.exception;
 
-public class ProductMgmtException extends Exception{
-	
+public class UserMgmtException extends Exception{
+
 	private static final long serialVersionUID = 1L;
+	
 	String errorMessage;
 	
-	public ProductMgmtException(String errorMessage) {
+	public UserMgmtException(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
 
@@ -16,7 +17,5 @@ public class ProductMgmtException extends Exception{
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
-	
 
 }

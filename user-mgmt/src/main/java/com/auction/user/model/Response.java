@@ -1,5 +1,4 @@
-package com.auction.product.model;
-
+package com.auction.user.model;
 
 public class Response {
 	String message;
@@ -26,5 +25,6 @@ public class Response {
 	public void setData(Object data) {
 		this.data = data;
 	}
+	
 	
 }

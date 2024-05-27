@@ -1,4 +1,4 @@
-package com.auction.user.exception;
+package com.auction.product.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,11 +11,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionAdvise extends ResponseEntityExceptionHandler{
 	
-	@ExceptionHandler({UserMgmtException.class})
-	public ResponseEntity<Object> handle(UserMgmtException ex, WebRequest request){
+	@ExceptionHandler({ProductMgmtException.class})
+	public ResponseEntity<Object> handle(ProductMgmtException ex, WebRequest request){
 		
 		return handleExceptionInternal(ex, ex.getErrorMessage(), 
-		          new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+		          new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
 		
 	}
 

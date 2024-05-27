@@ -8,10 +8,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.auction</groupId>
-	<artifactId>user-mgmt</artifactId>
+	<artifactId>product-mgmt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user-mgmt</name>
-	<description>project for auction user management</description>
+	<name>product-mgmt</name>
+	<description>project for auction product management</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

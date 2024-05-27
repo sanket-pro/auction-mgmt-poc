@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.auction.user.constant.UserType;
 import com.auction.user.dao.entity.UserEntity;
 import com.auction.user.dao.repo.UserRepository;
-import com.auction.user.exception.UserAdditionException;
+import com.auction.user.exception.UserMgmtException;
 import com.auction.user.model.Response;
 import com.auction.user.model.UserDetails;
 
@@ -19,15 +19,24 @@ public class UserService {
 	@Autowired
 	UserRepository userRepo;
 	
-	@Transactional(rollbackOn = UserAdditionException.class)
-	public Response addUser(UserDetails userDetails, UserType utype) throws UserAdditionException{
+	@Transactional(rollbackOn = UserMgmtException.class)
+	public Response addUser(UserDetails userDetails, UserType utype) throws UserMgmtException{
 		try {
 			return new Response("SUCCESS", utype.toString()+" registered successfully, please use the token="+
 					userRepo.save(populateUserData(userDetails, utype)).getToken() +
 					" for future interactions");
 		}
 		catch (Exception e) {
-			throw new UserAdditionException("Error occured during user registration");
+			throw new UserMgmtException("Error occured during user registration");
+		}
+	}
+	
+	public Response validateUser(Integer token, String type) throws UserMgmtException {
+		try {
+			return new Response("user validation response", userRepo.findByTokenAndType(token, type).isPresent());
+		}
+		catch (Exception e) {
+			throw new UserMgmtException("Error occured during user validation");
 		}
 	}
 	

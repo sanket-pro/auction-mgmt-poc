@@ -10,7 +10,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import com.auction.user.constant.UserType;
 import com.auction.user.controller.UserController;
 import com.auction.user.dao.entity.UserEntity;
-import com.auction.user.exception.UserAdditionException;
+import com.auction.user.exception.UserMgmtException;
 import com.auction.user.model.Response;
 import com.auction.user.model.UserDetails;
 import com.auction.user.service.UserService;
@@ -56,19 +56,19 @@ public class UserRepositoryTest {
 	}
 	
 	@Test
-	void registerSellerTest() throws UserAdditionException {
+	void registerSellerTest() throws UserMgmtException {
 		Response resp = controller.registerSeller(initializeSeller());
 		assertTrue(resp.getMessage().equals("SUCCESS"));
 	}
 	
 	@Test
-	void registerBuyerTest() throws UserAdditionException {
+	void registerBuyerTest() throws UserMgmtException {
 		Response resp = controller.registerBuyer(initializeBuyer());
 		assertTrue(resp.getMessage().equals("SUCCESS"));
 	}
 	
 	@Test
-	void testSellerDataInsertion() throws UserAdditionException {
+	void testSellerDataInsertion() throws UserMgmtException {
 		UserDetails input = initializeSeller();
 		Integer token = userRepo.save(service.populateUserData(input, UserType.SELLER)).getToken();
 		UserEntity userEntity = userRepo.findById(token).get();
@@ -77,7 +77,7 @@ public class UserRepositoryTest {
 	}
 	
 	@Test
-	void testBuyerDataInsertion() throws UserAdditionException {
+	void testBuyerDataInsertion() throws UserMgmtException {
 		UserDetails input = initializeBuyer();
 		Integer token = userRepo.save(service.populateUserData(input, UserType.BUYER)).getToken();
 		UserEntity userEntity = userRepo.findById(token).get();

@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionAdvise extends ResponseEntityExceptionHandler{
 	
-	@ExceptionHandler({UserAdditionException.class})
-	public ResponseEntity<Object> handle(UserAdditionException ex, WebRequest request){
+	@ExceptionHandler({UserMgmtException.class})
+	public ResponseEntity<Object> handle(UserMgmtException ex, WebRequest request){
 		
 		return handleExceptionInternal(ex, ex.getErrorMessage(), 
 		          new HttpHeaders(), HttpStatus.BAD_REQUEST, request);

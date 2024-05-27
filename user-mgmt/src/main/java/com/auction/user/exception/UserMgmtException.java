@@ -1,12 +1,12 @@
 package com.auction.user.exception;
 
-public class UserAdditionException extends Exception{
+public class UserMgmtException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 	
 	String errorMessage;
 	
-	public UserAdditionException(String errorMessage) {
+	public UserMgmtException(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
 

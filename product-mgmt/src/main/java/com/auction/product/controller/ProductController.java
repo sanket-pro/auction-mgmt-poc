@@ -2,9 +2,11 @@ package com.auction.product.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.auction.product.exception.ProductMgmtException;
@@ -27,10 +29,10 @@ public class ProductController {
 		return prodService.fetchProduct(pid);
 	}
 	
-	@GetMapping
-	public Response getProduct() throws ProductMgmtException {
+	@GetMapping("/seller")
+	public Response getSellerProducts(@PathParam(value = "token") Integer token) throws ProductMgmtException {
 		
-		return prodService.fetchAllProduct();
+		return prodService.getSellerProducts(token);
 	}
 	
 	@PostMapping
@@ -38,6 +40,11 @@ public class ProductController {
 		
 		return  prodService.addProduct(prodDetails);
 		
+	}
+	
+	@PatchMapping("/status")
+	public Response updateStatus(@RequestParam Integer pid,@RequestParam String status){
+		return  prodService.updateStatus(pid, status);
 	}
 
 }

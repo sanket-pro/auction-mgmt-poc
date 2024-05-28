@@ -48,21 +48,6 @@ public class ProductService {
 		}
 	}
 	
-	public Response fetchAllProduct() throws ProductMgmtException {
-		try {
-			Optional<List<ProductEntity>> product = prodRepo.findByAvailability(Availability.YES.toString());
-			
-			if(product.isPresent()) {
-				return new Response("Available Products", 
-						product.get());
-			}
-			return new Response("Error occured in fetching All Product details", null);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new ProductMgmtException("Error Occured while fetching all products");
-		}
-	}
 	
 	
 	public Response addProduct(ProductDetails prodDetails) throws ProductMgmtException {
@@ -103,5 +88,28 @@ public class ProductService {
 		return product;
 	}
 	
+	public Response updateStatus(Integer pid, String status) {
+		Optional<ProductEntity> product =  prodRepo.findById(pid);
+		if(product.isPresent()) {
+			ProductEntity entity = product.get();
+			entity.setAvailability(status);
+			prodRepo.save(entity);
+			return new Response("SUCCESS", null);
+		}
+		return null;
+	}
+	
+	public Response getSellerProducts(Integer token) {
+		Optional<List<ProductEntity>> products = prodRepo.findBySellerIdAndAvailability(token, Availability.YES.toString());
+		if(products.isPresent()) {
+			StringBuilder productDetails = new StringBuilder();
+			products.get().forEach(product -> {
+				productDetails.append(product.getPid()).append(":").append(product.getPname()).append(", ");
+			});
+			
+			return new Response("SUCCESS", productDetails.toString());
+		}
+		return new Response("No Products found", null);
+	}
 
 }

@@ -9,5 +9,6 @@ import com.auction.product.dao.entity.ProductEntity;
 
 public interface ProductRepo extends JpaRepository<ProductEntity, Integer>{
  Optional<List<ProductEntity>> findByAvailability(String availability);
+ Optional<List<ProductEntity>> findBySellerIdAndAvailability(Integer token, String availability);
 
 }

@@ -75,18 +75,6 @@ public class ProductServiceJPATest {
 		assertEquals(prodDetail.getAvailability(), product1.getAvailability());
 	}
 	
-	@Test
-	public void testfetchAllProduct() throws ProductMgmtException {
-		
-		Response resp = prodService.fetchAllProduct();
-		List<ProductEntity>  resplist = (List<ProductEntity>) resp.getData();
-		
-		assertEquals("Available Products", resp.getMessage());
-		assertNotNull(resplist);
-		assertEquals(2, resplist.size());
-		assertTrue(resplist.contains(product1));
-		assertTrue(resplist.contains(product2));
-		
-	}
+	
 
 }

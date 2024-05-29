@@ -18,5 +18,13 @@ public class ExceptionAdvise extends ResponseEntityExceptionHandler{
 		          new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 		
 	}
+	
+	@ExceptionHandler({Exception.class})
+	public ResponseEntity<Object> handle(Exception ex, WebRequest request){
+		
+		return handleExceptionInternal(ex, "Error occured during User creation, check user data for correctness", 
+		          new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+		
+	}
 
 }

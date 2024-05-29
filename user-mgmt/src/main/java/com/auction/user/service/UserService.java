@@ -19,7 +19,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepo;
 	
-	@Transactional(rollbackOn = UserMgmtException.class)
+	@Transactional(rollbackOn = Exception.class)
 	public Response addUser(UserDetails userDetails, UserType utype) throws UserMgmtException{
 		try {
 			return new Response("SUCCESS", utype.toString()+" registered successfully, please use the token="+

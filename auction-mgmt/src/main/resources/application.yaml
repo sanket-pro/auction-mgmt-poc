@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
+
+product:
+  fetch.url: http://localhost:8081/product/id?pid={pid}
+  update.url: http://localhost:8081/product/availability?pid={pid}&availability={availability}
+  seller.url: http://localhost:8081/product/seller?token={token}
+  
+userservice.url: http://localhost:8080/user/validate?token={token}&type={type}
+  
+server.port: 8082
